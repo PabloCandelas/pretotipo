@@ -94,7 +94,7 @@ class ArTracker():
             self.center_ros.y=float(center[1])
             self.center_ros.z=0 #As it is an image z is not used.
             self.radius_ros=int(radius)
-        cv2.imshow('Test Frame', self.frame)
+        #cv2.imshow('Test Frame', self.frame)
         key = cv2.waitKey(1) & 0xFF
 
 
