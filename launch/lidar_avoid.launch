@@ -1,6 +1,6 @@
 <launch>
     
   <include file="$(find turtlebot3_bringup)/launch/turtlebot3_robot.launch"/> 
-  <node pkg="pretotipo" name="esquivar" type="esqivar.py" output="screen" />
+  <node pkg="pretotipo" name="esquivar" type="esquivar.py" output="screen" />
 
 </launch>
