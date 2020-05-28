@@ -76,7 +76,7 @@ class BaseScanSubClass():
         print("min angle: " , self.minangledist)
         
         kamaleon = 10 
-        if self.mindist <0.25:
+        if self.mindist <0.3:
             self.mindist = 0
         self.robot_vel.linear.x = kamaleon*self.mindist
         
