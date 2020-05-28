@@ -89,7 +89,7 @@ class ScanClass():
             self.publicar = True
             print ("front")
             print(min(front))
-            self.robot_vel.linear.x = -0.2
+            self.robot_vel.linear.x = -0.15
             if front.index(min(front)) > 45:
                 self.robot_vel.angular.z = 0.3
                 
@@ -112,7 +112,7 @@ class ScanClass():
             self.publicar = True
             print ("back")
             print(min(back))
-            self.robot_vel.linear.x = 0.2
+            self.robot_vel.linear.x = 0.15
             if min(left) > min(right):
                 self.robot_vel.angular.z = 0.3
                 
