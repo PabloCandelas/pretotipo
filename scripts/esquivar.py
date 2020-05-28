@@ -67,6 +67,7 @@ class ScanClass():
         back = rangess[135:225]
         right = rangess[225:315]
         
+        #el orden en que estan acomodados los "if" siguientes es importante
         if min(rangess) >= 0.3:
             print("avanzando")
             self.robot_vel.angular.z = 0
@@ -75,10 +76,10 @@ class ScanClass():
         if 0.3 < min(front) < 0.5:
             print("casi")
             if front.index(min(front)) > 45:
-                self.robot_vel.angular.z = 0.5
+                self.robot_vel.angular.z = 0.3
                 
             if front.index(min(front)) <= 45:
-                self.robot_vel.angular.z = -0.5
+                self.robot_vel.angular.z = -0.3
             """if min(left) > min(right):
                 self.robot_vel.angular.z = 0.8
                 
@@ -90,10 +91,10 @@ class ScanClass():
             print(min(front))
             self.robot_vel.linear.x = -0.2
             if front.index(min(front)) > 45:
-                self.robot_vel.angular.z = 0.5
+                self.robot_vel.angular.z = 0.3
                 
             if front.index(min(front)) <= 45:
-                self.robot_vel.angular.z = -0.5
+                self.robot_vel.angular.z = -0.3
             """if min(left) > min(right):
                 self.robot_vel.angular.z = 0.5
                 
@@ -104,22 +105,22 @@ class ScanClass():
         if min(right) < 0.2:
             print ("right")
             print(min(right))
-            self.robot_vel.angular.z = 0.5
+            self.robot_vel.angular.z = 0.3
             
         if min(back) < 0.2:
             print ("back")
             print(min(back))
             self.robot_vel.linear.x = 0.2
             if min(left) > min(right):
-                self.robot_vel.angular.z = 0.5
+                self.robot_vel.angular.z = 0.3
                 
             if min(left) < min(right):
-                self.robot_vel.angular.z = -0.5
+                self.robot_vel.angular.z = -0.3
             
         if min(left) < 0.2:
             print ("left")
             print(min(left))
-            self.robot_vel.angular.z = -0.5
+            self.robot_vel.angular.z = -0.3
         
         
             
