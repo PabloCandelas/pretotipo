@@ -51,7 +51,7 @@ class ScanClass():
             pass
 
     def esquivar_cb(self, msg):  
-        
+        self.publicar = False
         print("esquivando")
         ranges = msg.ranges
         rangess = list(range(1,361))
@@ -68,12 +68,10 @@ class ScanClass():
         right = rangess[225:315]
         
         #el orden en que estan acomodados los "if" siguientes es importante
-        if min(rangess) >= 0.3:
-            print("avanzando")
-            self.robot_vel.angular.z = 0
-            self.robot_vel.linear.x = 0.2
+        
         
         if 0.3 < min(front) < 0.5:
+            self.publicar = True
             print("casi")
             if front.index(min(front)) > 45:
                 self.robot_vel.angular.z = 0.3
@@ -87,6 +85,7 @@ class ScanClass():
                 self.robot_vel.angular.z = -0.8"""
                 
         if min(front) < 0.3:
+            self.publicar = True
             print ("front")
             print(min(front))
             self.robot_vel.linear.x = -0.2
@@ -103,11 +102,13 @@ class ScanClass():
             
             
         if min(right) < 0.2:
+            self.publicar = True
             print ("right")
             print(min(right))
             self.robot_vel.angular.z = 0.3
             
         if min(back) < 0.2:
+            self.publicar = True
             print ("back")
             print(min(back))
             self.robot_vel.linear.x = 0.2
@@ -118,6 +119,7 @@ class ScanClass():
                 self.robot_vel.angular.z = -0.3
             
         if min(left) < 0.2:
+            self.publicar = True
             print ("left")
             print(min(left))
             self.robot_vel.angular.z = -0.3
