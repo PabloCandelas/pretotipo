@@ -1,0 +1,12 @@
+<launch>
+    
+  <!--<include file="$(find turtlebot3_bringup)/launch/turtlebot3_robot.launch"/> -->
+  <!--<include file="$(find turtlebot3_bringup)/launch/turtlebot3_rpicamera.launch"/> -->
+  <node name="republish" type="republish" pkg="image_transport" output="screen" args="compressed in:=/raspicam_node/image raw out:=/wu/image_raw" />
+  <node pkg="pretotipo" name="ar_tracker_n" type="ar_tracker_n.py" />
+  <node pkg="pretotipo" name="marker_follow" type="marker_follow.py" />
+  <node pkg="pretotipo" name="priority" type="priority.py" output="screen"/>
+
+  
+
+</launch>
