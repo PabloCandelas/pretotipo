@@ -60,7 +60,7 @@ class Priority():
             
     def follow_cb(self, msg):  
         self.cb2 = time.time()
-        if self.cb2 -self.cb1 > 2:
+        if self.cb2 -self.cb1 > 1:
             self.robot_vel= msg
             print("following")
         
