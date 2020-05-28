@@ -56,14 +56,14 @@ class MarkerVel():
         if 85 > self.rad > 75:
             self.robot_vel.linear.x = 0
             print("cerca")
-        if self.rad > 85:
+        if self.rad > 90:
             self.robot_vel.linear.x = -0.1
             print("muy cerca")
         
         pass   
         
     def center_cb(self, msg):  
-        kanguro = 0.005 #el profe puso kangular
+        kanguro = 0.004 #el profe puso kangular
         self.x0 = 320
         self.center_x = msg.x
         self.xdiff = self.x0 - self.center_x
