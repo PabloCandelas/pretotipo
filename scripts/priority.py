@@ -53,9 +53,10 @@ class Priority():
             pass
 
     def avoid_cb(self, msg):  
-            self.cb1 = time.time()
-            self.robot_vel= msg
-            print("avoiding")
+        print("avoiding")
+        self.cb1 = time.time()
+        self.robot_vel= msg
+
             
     def follow_cb(self, msg):  
         self.cb2 = time.time()
