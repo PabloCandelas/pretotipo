@@ -79,7 +79,7 @@ class ScanClass():
             if front.index(min(front)) <= 45:
                 self.robot_vel.angular.z = -0.3 """
                 
-            """if min(left) > min(right):
+        """if min(left) > min(right):
                 self.robot_vel.angular.z = 0.8
                 
             if min(left) < min(right):
