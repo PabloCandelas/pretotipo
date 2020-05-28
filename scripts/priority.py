@@ -32,8 +32,9 @@ class Priority():
 
         ############################### SUBSCRIBERS #####################################  
 
+        rospy.Subscriber("lidar_avoid", Twist, self.avoid_cb)  
         rospy.Subscriber("marker_follow", Twist, self.follow_cb)   
-        rospy.Subscriber("lidar_avoid", Twist, self.avoid_cb)   
+         
 
         ############ CONSTANTS ################ 
         self.robot_vel = Twist()
@@ -51,16 +52,18 @@ class Priority():
             
             pass
 
+    def avoid_cb(self, msg):  
+            self.cb1 = time.time()
+            self.robot_vel= msg
+            print("avoiding")
+            
     def follow_cb(self, msg):  
         self.cb2 = time.time()
         if self.cb2 -self.cb1 > 2:
             self.robot_vel= msg
             print("following")
         
-    def avoid_cb(self, msg):  
-        self.cb1 = time.time()
-        self.robot_vel= msg
-        print("avoiding")
+    
 
     def cleanup(self):  
         
