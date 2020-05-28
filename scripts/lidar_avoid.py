@@ -70,21 +70,21 @@ class ScanClass():
         #el orden en que estan acomodados los "if" siguientes es importante
         
         
-        if 0.3 < min(front) < 0.5:
+        """if 0.3 < min(front) < 0.5:
             self.publicar = True
             print("casi")
             if front.index(min(front)) > 45:
                 self.robot_vel.angular.z = 0.3
                 
             if front.index(min(front)) <= 45:
-                self.robot_vel.angular.z = -0.3
+                self.robot_vel.angular.z = -0.3 """
             """if min(left) > min(right):
                 self.robot_vel.angular.z = 0.8
                 
             if min(left) < min(right):
-                self.robot_vel.angular.z = -0.8"""
+                self.robot_vel.angular.z = -0.8""" 
                 
-        if min(front) < 0.3:
+        if min(front) < 0.25:
             self.publicar = True
             print ("front")
             print(min(front))
