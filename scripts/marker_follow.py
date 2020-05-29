@@ -50,7 +50,7 @@ class MarkerVel():
             pass
 
     def rad_cb(self, msg):  
-        kamaleon = 10 #el profe puso klinear
+        kamaleon = 5 #el profe puso klinear
         self.rad = msg.data
         self.robot_vel.linear.x = kamaleon / (self.rad + 0.00001)
         if 85 > self.rad > 75:
