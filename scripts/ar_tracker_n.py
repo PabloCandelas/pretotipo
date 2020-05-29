@@ -31,14 +31,15 @@ class ArTracker():
         self.radius_ros=0
         self.EJEX = 0
         self.EJEY=1
-        
+        self.publish = True
         
         #To adjust the execution rate of the while Loop
         ros_rate = rospy.Rate(10) #10Hz
         # keep looping
         print ("Iniciado")
         while not rospy.is_shutdown():
-            if self.radius_ros>0: #Just publish something if the radius is large enough
+     
+            if self.publish: 
                 self.pub_center.publish(self.center_ros)
                 self.pub_radius.publish(self.radius_ros)
             ros_rate.sleep()
@@ -52,6 +53,7 @@ class ArTracker():
 
     def camera_callback(self, data):  
         print("callback")
+        self.publish = False
         try:
             # We select bgr8 because its the OpenCV encoding by default
             self.frame = self.bridge_object.imgmsg_to_cv2(data, desired_encoding="bgr8")
@@ -69,6 +71,7 @@ class ArTracker():
         markerCorners, markerIds, rejectedCandidates = cv2.aruco.detectMarkers(self.frame, dictionary, parameters=parameters)        
         #Si se detecto un marcador
         if markerIds >0:
+            self.publish = True
             #dibujar cuadro alrededor
             cv2.aruco.drawDetectedMarkers(self.frame, markerCorners, markerIds)
             
