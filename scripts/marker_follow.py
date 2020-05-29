@@ -39,14 +39,12 @@ class MarkerVel():
         self.robot_vel = Twist()
         self.robot_vel.linear.x = 0
         self.robot_vel.angular.z = 0.0
-        self.time= 0
-        self.cb=0
+        self.publish = True
         
         #********** INIT NODE **********###  
         r = rospy.Rate(10) #1Hz  
         while not rospy.is_shutdown(): 
-            self.time = time.time()
-            if self.time-self.cb < 3: 
+            if self.publish:
                 print self.robot_vel
                 self.cmd_vel_pub.publish(self.robot_vel)
 
@@ -55,7 +53,6 @@ class MarkerVel():
             pass
 
     def rad_cb(self, msg): 
-        self.cb = time.time() 
         kamaleon = 5 #el profe puso klinear
         self.rad = msg.data
         self.robot_vel.linear.x = kamaleon / (self.rad + 0.00001)
