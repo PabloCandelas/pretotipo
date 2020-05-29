@@ -45,7 +45,7 @@ class MarkerVel():
         #********** INIT NODE **********###  
         r = rospy.Rate(10) #1Hz  
         while not rospy.is_shutdown(): 
-        self.time = time.time()
+            self.time = time.time()
             if self.time-self.cb < 2: 
                 print self.robot_vel
                 self.cmd_vel_pub.publish(self.robot_vel)
