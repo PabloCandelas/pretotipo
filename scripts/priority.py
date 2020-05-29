@@ -42,16 +42,23 @@ class Priority():
         self.robot_vel.angular.z = 0.0
         self.cb1 = 0
         self.cb2 = 0
-        
+        self.time=0
         #********** INIT NODE **********###  
         r = rospy.Rate(10) #1Hz  
         
         while not rospy.is_shutdown():  
+            self.time= time.time()
             self.cmd_vel_pub.publish(self.robot_vel)
+            if self.time-self.cb1 > 2.5:
+                self.undetected()
             r.sleep()  
             
             pass
-
+    def undetected(self):
+        if self.time - self.cb2 > 1:
+            self.robot_vel.linear.x = 0
+            self.robot_vel.angular.z = 0.0
+    
     def avoid_cb(self, msg):  
         print("avoiding")
         self.cb1 = time.time()
