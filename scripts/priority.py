@@ -56,8 +56,9 @@ class Priority():
             pass
     def undetected(self):
         if self.time - self.cb2 > 1:
+            print("lost")
             self.robot_vel.linear.x = 0
-            self.robot_vel.angular.z = 0.01
+            self.robot_vel.angular.z = 0.05
     
     def avoid_cb(self, msg):  
         print("avoiding")
