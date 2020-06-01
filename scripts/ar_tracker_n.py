@@ -1,12 +1,21 @@
+"""
+This program is a ROS node. It detects markers from aruco library.
+It has one input:
+    *Images from the topic:"/wu/image_raw"
+The outputs are:
+    *The center of the marker in the video (pixels) to the topic:"center"
+    *The radius of the circumscribed circle around the marker (pixels) to the topic:"radius"
+    
+Author:Pablo Candelas 01/june/2020
+"""
 #!/usr/bin/env python
 
-#incluir librerias
+# libararies
 import rospy
 from std_msgs.msg import Int32
 from geometry_msgs.msg import Point
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
-# import the necessary packages
 from collections import deque
 from imutils.video import VideoStream
 import numpy as np
@@ -14,11 +23,9 @@ import argparse
 import cv2
 import imutils
 import time
-import rospy
 
 
-
-# construct the argument parse and parse the arguments
+# +
 class ArTracker():
     def __init__(self):
         # Init the ros node
@@ -38,7 +45,6 @@ class ArTracker():
         # keep looping
         print ("Iniciado")
         while not rospy.is_shutdown():
-     
             if self.publish: 
                 self.pub_center.publish(self.center_ros)
                 self.pub_radius.publish(self.radius_ros)
@@ -100,6 +106,6 @@ class ArTracker():
         #cv2.imshow('Test Frame', self.frame)
         key = cv2.waitKey(1) & 0xFF
 
-
+# Main program only calling the class "ArTracker()"
 if __name__ == '__main__':
     ArTracker()
