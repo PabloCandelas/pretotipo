@@ -4,7 +4,7 @@ The input is:
     *The video from the webcam (you must have your webcam enabled)
 The outputs are:
     *The center of the marker in the video (pixels)
-    *The radious of the circumscribed circle around the marker (pixels) 
+    *The radius of the circumscribed circle around the marker (pixels) 
     
 Author:Pablo Candelas 01/june/2020
 """
@@ -52,18 +52,18 @@ if __name__ == '__main__':
             # Draw a rectangle around the detected marker
             cv2.aruco.drawDetectedMarkers(frame, markerCorners, markerIds)  
                   
-            # Computing the center and radious
+            # Computing the center and radius
             xcorners = [0,0,0,0]
             esquinas(markerCorners,xcorners,AXISX)
             ycorners = [0,0,0,0]
             esquinas(markerCorners,ycorners,AXISY) 
-            """ To calculate the center we know that the marker has a quafrangular shape
+            """ To calculate the center we know that the marker has a quadrangular shape
             # x coordinates will be the avarage of the minimun value and the maximun value of the corners in the "x" axis
             # y coordinates will be the avarage of the minimun value and the maximun value of the corners in the "y" axis """
             center =int((min(esqx) + max(esqx))/2) ,int((min(esqy) + max(esqy))/2)
             # The radious is computed used the distance from the center of the marker to any of its corners
             radius = np.sqrt((esqx[0]-center[0])*(esqx[0]-center[0]) + (esqy[0]-center[1])*(esqy[0]-center[1]))
-            # Print the values of the variables "center" and "radious" 
+            # Print the values of the variables "center" and "radius" 
             if DEBUG: 
                 print("----------")
                 print("center:")
