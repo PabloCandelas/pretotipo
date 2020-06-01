@@ -21,8 +21,8 @@ AXISY=1
 
 # Functions
 def esquinas(markerCorners,coners,axis):
-"""This function receives the array of arrays "markerCorners" and the "axis" and it returns the array "corners" 
-only with the values from the desired axis from "markerCorners". """
+    """This function receives the array of arrays "markerCorners" and the "axis" and it returns the array "corners" 
+    only with the values from the desired axis from "markerCorners". """
     for i in range(0,4):
         esq[i] = markerCorners[0][0][i][axis]
 
