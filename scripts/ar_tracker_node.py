@@ -30,14 +30,7 @@ class ArTracker():
         self.center_ros = Point()
         self.radius_ros=0
         self.EJEX = 0
-        self.EJEY=1
-        
-        ap = argparse.ArgumentParser()
-        ap.add_argument("-v", "--video",
-            help="path to the (optional) video file")
-        ap.add_argument("-b", "--buffer", type=int, default=64,
-            help="max buffer size")
-        self.args = vars(ap.parse_args())
+        self.EJEY=1        
         
         #To adjust the execution rate of the while Loop
         ros_rate = rospy.Rate(10) #10Hz
