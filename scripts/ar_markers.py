@@ -1,7 +1,9 @@
-"""This program generates the marker that will be detected and followed
-in future programs.
-And generates a png document:"marker33.png" in the same directory.
-Author:Pablo Candelas 01/jun/2020"""
+"""
+This program generates the marker that will be detected and followed in future programs.
+As an output the marker is saved as a png document("marker33.png") in the same directory.
+
+Author:Pablo Candelas 01/jun/2020
+"""
 # import libraries
 import cv2 as cv
 import numpy as np
