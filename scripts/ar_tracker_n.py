@@ -98,9 +98,9 @@ class ArTracker():
                   
             # Computing the center and radius
             xcorners = [0,0,0,0]
-            esquinas(markerCorners,xcorners,AXISX)
+            self.esquinas(markerCorners,xcorners,AXISX)
             ycorners = [0,0,0,0]
-            esquinas(markerCorners,ycorners,AXISY) 
+            self.esquinas(markerCorners,ycorners,AXISY) 
             """ To calculate the center we know that the marker has a quadrangular shape
             # x coordinates will be the avarage of the minimun value and the maximun value of the corners in the "x" axis
             # y coordinates will be the avarage of the minimun value and the maximun value of the corners in the "y" axis """
