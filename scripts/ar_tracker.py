@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 This program detects the markers from aruco library.
 The input is:
@@ -8,7 +10,6 @@ The outputs are:
     
 Author:Pablo Candelas 01/june/2020
 """
-#!/usr/bin/env python
 
 # libraries
 import cv2
