@@ -50,6 +50,7 @@ class ArTracker():
         self.AXISX = 0
         self.AXISY= 1
         self.DEBUG = True
+        self.blah = 1
         
         # To adjust the execution rate of the while Loop
         ros_rate = rospy.Rate(10) #10Hz
@@ -83,9 +84,11 @@ class ArTracker():
         except CvBridgeError as e:
             print(e)
             
-
-        # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.
-        self.out = cv2.VideoWriter('outpy.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (640,480))
+        
+        if self.blah = 1:
+            # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.
+            self.out = cv2.VideoWriter('outpy.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (640,480))
+            self.blah = 2
             
         # DETECT THE MARKER
         # Load the dictionary that was used to generate the markers.
