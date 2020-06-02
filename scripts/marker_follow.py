@@ -1,4 +1,14 @@
 #!/usr/bin/env python  
+"""
+This program is a ROS node. It follows a detetcted object based on its center position and its radius (pixels).
+It has 2 input:
+    *Center point from the topic:"center"
+    *Radius of the object from the topic:"radius"
+The output is:
+    *Twist msg with the velocities needed to follow the object publishing them to the topic:"marker_follow"
+    
+Author:Pablo Candelas 01/june/2020
+"""
 
 import time
 import rospy  
