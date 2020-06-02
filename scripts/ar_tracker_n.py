@@ -82,13 +82,9 @@ class ArTracker():
         except CvBridgeError as e:
             print(e)
             
-        # Default resolutions of the frame are obtained.The default resolutions are system dependent.
-        # We convert the resolutions from float to integer.
-        frame_width = int(capture.get(3))
-        frame_height = int(capture.get(4))
 
         # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.
-        out = cv2.VideoWriter('outnode.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (frame_width,frame_height))
+        out = cv2.VideoWriter('outnode.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (640,480))
             
         # DETECT THE MARKER
         # Load the dictionary that was used to generate the markers.
