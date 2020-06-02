@@ -19,7 +19,7 @@ import numpy as np
 # Constants
 DEBUG = True 
 AXISX = 0
-AXISY=1
+AXISY= 1
 
 # Functions
 def esquinas(markerCorners,corners,axis):
