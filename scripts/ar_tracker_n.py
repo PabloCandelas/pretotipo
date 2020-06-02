@@ -88,7 +88,7 @@ class ArTracker():
         # Initialize the detector parameters using default values
         parameters =  cv2.aruco.DetectorParameters_create()
         # Detect the markers in the image
-        markerCorners, markerIds, rejectedCandidates = cv2.aruco.detectMarkers(frame, dictionary, parameters=parameters)   
+        markerCorners, markerIds, rejectedCandidates = cv2.aruco.detectMarkers(self.frame, dictionary, parameters=parameters)   
           
         # If there was at least one marker detected
         if markerIds >0:
@@ -117,7 +117,7 @@ class ArTracker():
                 print(radius)  
                 
             # Draw the circle thar circumscribes the marker
-            cv2.circle(frame, (int(center[0]), int(center[1])), int(radius),
+            cv2.circle(self.frame, (int(center[0]), int(center[1])), int(radius),
             (0, 128, 255), 2)
             # Draw the center with a small circle
             cv2.circle(frame, center, 5, (255, 255, 0), -1)       
