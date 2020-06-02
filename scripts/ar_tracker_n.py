@@ -130,6 +130,6 @@ class ArTracker():
             
         #cv2.imshow('Test Frame', self.frame)
 
-# Main program only calling the class "ArTracker()"
+# Main program only calls the class "ArTracker()"
 if __name__ == '__main__':
     ArTracker()
