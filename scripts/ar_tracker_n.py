@@ -85,7 +85,7 @@ class ArTracker():
             print(e)
             
         
-        if self.blah = 1:
+        if self.blah == 1:
             # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.
             self.out = cv2.VideoWriter('outpy.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (640,480))
             self.blah = 2
