@@ -21,9 +21,8 @@ class ScanClass():
     # Functions 
     def __init__(self):  
         """ This function initializes the ROS node "lidar_avoid".
-        Subscribes it to the topic "/wu/image_raw.
-        Publishing outputs to topic:"lidar_avoid".
-        """      
+        Subscribes it to the topic "/scan".
+        Publishing outputs to topic:"lidar_avoid". """      
         print ("lidar_avoid node started")  
         
         # Start publisher and subscriber
@@ -130,7 +129,7 @@ class ScanClass():
         print("min dist: " , self.mindist)
         
 
-# Main program initializing node and calling "ScanClass()"
+# Main program initializing node and calls "ScanClass()"
 if __name__ == "__main__":  
     rospy.init_node("lidar_avoid", anonymous=False)  
     try:  
