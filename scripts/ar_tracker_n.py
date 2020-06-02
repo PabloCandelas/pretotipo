@@ -94,7 +94,7 @@ class ArTracker():
         if markerIds >0:
             self.publish = True
             # Draw a rectangle around the detected marker
-            cv2.aruco.drawDetectedMarkers(frame, markerCorners, markerIds)  
+            cv2.aruco.drawDetectedMarkers(self.frame, markerCorners, markerIds)  
                   
             # Computing the center and radius
             xcorners = [0,0,0,0]
@@ -120,7 +120,7 @@ class ArTracker():
             cv2.circle(self.frame, (int(center[0]), int(center[1])), int(radius),
             (0, 128, 255), 2)
             # Draw the center with a small circle
-            cv2.circle(frame, center, 5, (255, 255, 0), -1)       
+            cv2.circle(self.frame, center, 5, (255, 255, 0), -1)       
             
             # Saving the computed values into the ROS publishinf variables
             self.center_ros.x=float(center[0])
