@@ -68,6 +68,9 @@ class ScanClass():
         right = rangess[225:315]
         
         #el orden en que estan acomodados los "if" siguientes es importante
+        if min(rangess) >= 0.3:
+            self.robot_vel.angular.z = 0
+            self.robot_vel.linear.x = 0.2
         
         
         """if 0.3 < min(front) < 0.5:
