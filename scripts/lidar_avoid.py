@@ -3,8 +3,8 @@
 This program is a ROS node. It avoids objects detected with a lidar.
 It has one input:
     *LaserScan msg received from the topic:"/scan"
-The outputs is:
-    *Twist msg with the velocities needed to avoid crashes to the topic:"lidar_avoid"
+The output is:
+    *Twist msg with the velocities needed to avoid crashes publishing them to the topic:"lidar_avoid"
     
 Author:Pablo Candelas 01/june/2020
 """
