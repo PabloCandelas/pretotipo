@@ -25,25 +25,39 @@ import imutils
 import time
 
 
-# +
+# Classes
 class ArTracker():
+
+    # Functions
     def __init__(self):
+        """ This function initializes the ROS node "ar_tracker".
+        Subscribes it to the topic "/wu/image_raw.
+        Publishing outputs to topics: "center" and "radius".
+        """
         # Init the ros node
         rospy.init_node("ar_tracker")
         self.pub_center = rospy.Publisher('center', Point, queue_size=10)
         self.pub_radius = rospy.Publisher('radius', Int32, queue_size=10)
         self.image_sub = rospy.Subscriber("/wu/image_raw",Image,self.camera_callback)
+        
+        # Variables
         self.bridge_object = CvBridge() #Creates the bridge object between ROS and opencv images
         self.center_ros = Point()
-        self.radius_ros=0
-        self.EJEX = 0
-        self.EJEY=1
+        self.radius_ros= 0
         self.publish = True
+        
+        # Constants 
+        self.AXISX = 0
+        self.AXISY= 1
+        self.DEBUG = True
         
         #To adjust the execution rate of the while Loop
         ros_rate = rospy.Rate(10) #10Hz
-        # keep looping
-        print ("Iniciado")
+        
+        # Confirmation msg
+        print ("Ar_tracker_node started")
+        
+        # Publisher loop, it only publishes while the node is active and detectin a marker
         while not rospy.is_shutdown():
             if self.publish: 
                 self.pub_center.publish(self.center_ros)
@@ -53,9 +67,11 @@ class ArTracker():
         # close all windows
         cv2.destroyAllWindows()
     
-    def esquinas(self,markerCorners,esq,eje):
+    def esquinas(self,markerCorners,corners,axis):
+        """This function receives the array of arrays "markerCorners" and the "axis" and it returns the array "corners" 
+        only with the values from the desired axis from "markerCorners". """
         for i in range(0,4):
-            esq[i] = markerCorners[0][0][i][eje]
+            corners[i] = markerCorners[0][0][i][axis]
 
     def camera_callback(self, data):  
         print("callback")
@@ -65,46 +81,53 @@ class ArTracker():
             self.frame = self.bridge_object.imgmsg_to_cv2(data, desired_encoding="bgr8")
         except CvBridgeError as e:
             print(e)
-
-        #DETECTAR MARCADOR
-        #Load the dictionary that was used to generate the markers.
+        
+        # DETECT THE MARKER
+        # Load the dictionary that was used to generate the markers.
         dictionary = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
-
         # Initialize the detector parameters using default values
         parameters =  cv2.aruco.DetectorParameters_create()
-        
         # Detect the markers in the image
-        markerCorners, markerIds, rejectedCandidates = cv2.aruco.detectMarkers(self.frame, dictionary, parameters=parameters)        
-        #Si se detecto un marcador
+        markerCorners, markerIds, rejectedCandidates = cv2.aruco.detectMarkers(frame, dictionary, parameters=parameters)   
+          
+        # If there was at least one marker detected
         if markerIds >0:
             self.publish = True
-            #dibujar cuadro alrededor
-            cv2.aruco.drawDetectedMarkers(self.frame, markerCorners, markerIds)
-            
-            #Caluclo de radio y centro
-            esqx = [0,0,0,0]
-            self.esquinas(markerCorners,esqx,self.EJEX)
-            esqy = [0,0,0,0]
-            self.esquinas(markerCorners,esqy,self.EJEY)
-               
+            # Draw a rectangle around the detected marker
+            cv2.aruco.drawDetectedMarkers(frame, markerCorners, markerIds)  
+                  
+            # Computing the center and radius
+            xcorners = [0,0,0,0]
+            esquinas(markerCorners,xcorners,AXISX)
+            ycorners = [0,0,0,0]
+            esquinas(markerCorners,ycorners,AXISY) 
+            """ To calculate the center we know that the marker has a quadrangular shape
+            # x coordinates will be the avarage of the minimun value and the maximun value of the corners in the "x" axis
+            # y coordinates will be the avarage of the minimun value and the maximun value of the corners in the "y" axis """
             center =int((min(esqx) + max(esqx))/2) ,int((min(esqy) + max(esqy))/2)
+            # The radious is computed used the distance from the center of the marker to any of its corners
             radius = np.sqrt((esqx[0]-center[0])*(esqx[0]-center[0]) + (esqy[0]-center[1])*(esqy[0]-center[1]))
-            print("----------")
-            print("center:")
-            print(center) 
-            print("radius:")  
-            print(radius)  
-            #Dibujar circulo y centro
-            cv2.circle(self.frame, (int(center[0]), int(center[1])), int(radius),(0, 128, 255), 2)
-            cv2.circle(self.frame, center, 5, (255, 255, 0), -1)     
-            #mostrar en pantalla     
-       
+            # Print the values of the variables "center" and "radius" 
+            if DEBUG: 
+                print("----------")
+                print("center:")
+                print(center) 
+                print("radius:")  
+                print(radius)  
+                
+            # Draw the circle thar circumscribes the marker
+            cv2.circle(frame, (int(center[0]), int(center[1])), int(radius),
+            (0, 128, 255), 2)
+            # Draw the center with a small circle
+            cv2.circle(frame, center, 5, (255, 255, 0), -1)       
+            
+            # Saving the computed values into the ROS publishinf variables
             self.center_ros.x=float(center[0])
             self.center_ros.y=float(center[1])
             self.center_ros.z=0 #As it is an image z is not used.
             self.radius_ros=int(radius)
+            
         #cv2.imshow('Test Frame', self.frame)
-        key = cv2.waitKey(1) & 0xFF
 
 # Main program only calling the class "ArTracker()"
 if __name__ == '__main__':
