@@ -85,7 +85,7 @@ class ArTracker():
             
 
         # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.
-        self.out = cv2.VideoWriter('outnode.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (640,480))
+        self.out = cv2.VideoWriter('outpy.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (640,480))
             
         # DETECT THE MARKER
         # Load the dictionary that was used to generate the markers.
