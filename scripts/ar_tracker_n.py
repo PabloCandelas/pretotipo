@@ -109,7 +109,7 @@ class ArTracker():
             radius = np.sqrt((xcorners[0]-center[0])*(xcorners[0]-center[0]) + (ycorners[0]-center[1])*(ycorners[0]-center[1]))
             # Print the values of the variables "center" and "radius" 
             # Print the values of the variables "center" and "radius" 
-            if DEBUG: 
+            if self.DEBUG: 
                 print("----------")
                 print("center:")
                 print(center) 
