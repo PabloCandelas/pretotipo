@@ -66,6 +66,7 @@ class ArTracker():
 
         # close all windows
         cv2.destroyAllWindows()
+        self.out.release()
     
     def esquinas(self,markerCorners,corners,axis):
         """This function receives the array of arrays "markerCorners" and the "axis" and it returns the array "corners" 
@@ -84,7 +85,7 @@ class ArTracker():
             
 
         # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.
-        out = cv2.VideoWriter('outnode.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (640,480))
+        self.out = cv2.VideoWriter('outnode.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (640,480))
             
         # DETECT THE MARKER
         # Load the dictionary that was used to generate the markers.
@@ -134,7 +135,7 @@ class ArTracker():
             
         #cv2.imshow('Test Frame', self.frame)
         # Save the frame for the recorded video
-        out.write(self.frame)
+        self.out.write(self.frame)
 
 # Main program only calls the class "ArTracker()"
 if __name__ == '__main__':
