@@ -4,8 +4,8 @@ This program is a ROS node. It detects markers from aruco library.
 It has one input:
     *Images from the topic:"/wu/image_raw"
 The outputs are:
-    *The center of the marker in the video (pixels) to the topic:"center"
-    *The radius of the circumscribed circle around the marker (pixels) to the topic:"radius"
+    *The center of the marker in the video (pixels) publishing it to the topic:"center"
+    *The radius of the circumscribed circle around the marker (pixels) publishing it to the topic:"radius"
     
 Author:Pablo Candelas 01/june/2020
 """
