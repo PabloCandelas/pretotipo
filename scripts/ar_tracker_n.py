@@ -31,7 +31,7 @@ class ArTracker():
     # Functions
     def __init__(self):
         """ This function initializes the ROS node "ar_tracker".
-        Subscribes it to the topic "/wu/image_raw.
+        Subscribes it to the topic "/wu/image_raw".
         Publishing outputs to topics: "center" and "radius".
         """
         # Init the ros node
@@ -51,13 +51,13 @@ class ArTracker():
         self.AXISY= 1
         self.DEBUG = True
         
-        #To adjust the execution rate of the while Loop
+        # To adjust the execution rate of the while Loop
         ros_rate = rospy.Rate(10) #10Hz
         
         # Confirmation msg
         print ("Ar_tracker_node started")
         
-        # Publisher loop, it only publishes while the node is active and detectin a marker
+        # Publisher loop, it only publishes while the node is active and detecting a marker
         while not rospy.is_shutdown():
             if self.publish: 
                 self.pub_center.publish(self.center_ros)
