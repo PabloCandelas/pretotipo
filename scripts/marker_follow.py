@@ -85,7 +85,7 @@ class MarkerVel():
         self.x0 = 320
         self.center_x = msg.x
         self.xdiff = self.x0 - self.center_x
-        self.robot_vel.angular.z = kanguro*self.xdiff
+        self.robot_vel.angular.z = k_angular*self.xdiff
         
         pass   
 
