@@ -7,6 +7,7 @@ The input is:
 The outputs are:
     *The center of the marker in the video (pixels)
     *The radius of the circumscribed circle around the marker (pixels) 
+    *Rercorded video saved as "outpy.avi" in the same directory
     
 Author:Pablo Candelas 01/june/2020
 """
@@ -29,7 +30,7 @@ def esquinas(markerCorners,corners,axis):
 
 #Main program
 if __name__ == '__main__':
-    # Recive the incoming video
+    # Recieve the incoming video
     print('Press "q" to quit')
     capture = cv2.VideoCapture(0)
     if capture.isOpened():  # try to get the first frame
@@ -37,9 +38,20 @@ if __name__ == '__main__':
     else:
         frame_captured = False
         
+    # Default resolutions of the frame are obtained.The default resolutions are system dependent.
+    # We convert the resolutions from float to integer.
+    frame_width = int(capture.get(3))
+    frame_height = int(capture.get(4))
+
+    # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.
+    out = cv2.VideoWriter('outpy.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (frame_width,frame_height))
+        
     # Meanwhile the video is active
     while frame_captured:
-    
+        # Exit
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+            
         # DETECT THE MARKER
         # Load the dictionary that was used to generate the markers.
         dictionary = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
@@ -50,6 +62,7 @@ if __name__ == '__main__':
           
         # If there was at least one marker detected
         if markerIds >0:
+        
             # Draw a rectangle around the detected marker
             cv2.aruco.drawDetectedMarkers(frame, markerCorners, markerIds)  
                   
@@ -81,14 +94,15 @@ if __name__ == '__main__':
         # Show the resulting image/video 
         cv2.imshow('Test Frame', frame)
         
-        # Exit
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+        # Save the frame for the recorded video
+        out.write(frame)
+        
         # Retake the video capture
         frame_captured, frame = capture.read()
 
     # When everything done, release the capture
     capture.release()
+    out.release()
     cv2.destroyAllWindows() 
     
     # Farewell msg
