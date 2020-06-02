@@ -104,9 +104,10 @@ class ArTracker():
             """ To calculate the center we know that the marker has a quadrangular shape
             # x coordinates will be the avarage of the minimun value and the maximun value of the corners in the "x" axis
             # y coordinates will be the avarage of the minimun value and the maximun value of the corners in the "y" axis """
-            center =int((min(esqx) + max(esqx))/2) ,int((min(esqy) + max(esqy))/2)
+            center =int((min(xcorners) + max(xcorners))/2) ,int((min(ycorners) + max(ycorners))/2)
             # The radious is computed used the distance from the center of the marker to any of its corners
-            radius = np.sqrt((esqx[0]-center[0])*(esqx[0]-center[0]) + (esqy[0]-center[1])*(esqy[0]-center[1]))
+            radius = np.sqrt((xcorners[0]-center[0])*(xcorners[0]-center[0]) + (ycorners[0]-center[1])*(ycorners[0]-center[1]))
+            # Print the values of the variables "center" and "radius" 
             # Print the values of the variables "center" and "radius" 
             if DEBUG: 
                 print("----------")
