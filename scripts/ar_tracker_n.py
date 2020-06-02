@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 This program is a ROS node. It detects markers from aruco library.
 It has one input:
@@ -8,7 +9,6 @@ The outputs are:
     
 Author:Pablo Candelas 01/june/2020
 """
-#!/usr/bin/env python
 
 # libararies
 import rospy
