@@ -81,7 +81,15 @@ class ArTracker():
             self.frame = self.bridge_object.imgmsg_to_cv2(data, desired_encoding="bgr8")
         except CvBridgeError as e:
             print(e)
-        
+            
+        # Default resolutions of the frame are obtained.The default resolutions are system dependent.
+        # We convert the resolutions from float to integer.
+        frame_width = int(capture.get(3))
+        frame_height = int(capture.get(4))
+
+        # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.
+        out = cv2.VideoWriter('outnode.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (frame_width,frame_height))
+            
         # DETECT THE MARKER
         # Load the dictionary that was used to generate the markers.
         dictionary = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
@@ -129,6 +137,8 @@ class ArTracker():
             self.radius_ros=int(radius)
             
         #cv2.imshow('Test Frame', self.frame)
+        # Save the frame for the recorded video
+        out.write(self.frame)
 
 # Main program only calls the class "ArTracker()"
 if __name__ == '__main__':
